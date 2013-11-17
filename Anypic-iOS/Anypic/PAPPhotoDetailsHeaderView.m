@@ -134,9 +134,11 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
+    /*
     [PAPUtility drawSideDropShadowForRect:self.nameHeaderView.frame inContext:UIGraphicsGetCurrentContext()];
     [PAPUtility drawSideDropShadowForRect:self.photoImageView.frame inContext:UIGraphicsGetCurrentContext()];
     [PAPUtility drawSideDropShadowForRect:self.likeBarView.frame inContext:UIGraphicsGetCurrentContext()];
+     */
 }
 
 
@@ -195,10 +197,10 @@ static TTTTimeIntervalFormatter *timeFormatter;
 - (void)setLikeButtonState:(BOOL)selected {
     if (selected) {
         [likeButton setTitleEdgeInsets:UIEdgeInsetsMake( -1.0f, 0.0f, 0.0f, 0.0f)];
-        [[likeButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, -1.0f)];
+       // [[likeButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, -1.0f)];
     } else {
         [likeButton setTitleEdgeInsets:UIEdgeInsetsMake( 0.0f, 0.0f, 0.0f, 0.0f)];
-        [[likeButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
+       // [[likeButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
     }
     [likeButton setSelected:selected];
 }
@@ -234,9 +236,9 @@ static TTTTimeIntervalFormatter *timeFormatter;
      Create top of header view with name and avatar
      */
     self.nameHeaderView = [[UIView alloc] initWithFrame:CGRectMake(nameHeaderX, nameHeaderY, nameHeaderWidth, nameHeaderHeight)];
-    self.nameHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]];
+    //self.nameHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]];
     [self addSubview:self.nameHeaderView];
-    
+    /*
     CALayer *layer = self.nameHeaderView.layer;
     layer.backgroundColor = [UIColor whiteColor].CGColor;
     layer.masksToBounds = NO;
@@ -246,7 +248,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     layer.shouldRasterize = YES;
     
     layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, self.nameHeaderView.frame.size.height - 4.0f, self.nameHeaderView.frame.size.width, 4.0f)].CGPath;
-
+    */
     // Load data for header
     [self.photographer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // Create avatar view
@@ -267,28 +269,28 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [userButton setTitle:nameString forState:UIControlStateNormal];
         [userButton setTitleColor:[UIColor colorWithRed:73.0f/255.0f green:55.0f/255.0f blue:35.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [userButton setTitleColor:[UIColor colorWithRed:134.0f/255.0f green:100.0f/255.0f blue:65.0f/255.0f alpha:1.0f] forState:UIControlStateHighlighted];
-        [[userButton titleLabel] setLineBreakMode:UILineBreakModeTailTruncation];
-        [[userButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
-        [userButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
+        [[userButton titleLabel] setLineBreakMode:NSLineBreakByTruncatingTail];
+       // [[userButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+       // [userButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
         [userButton addTarget:self action:@selector(didTapUserNameButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         // we resize the button to fit the user's name to avoid having a huge touch area
         CGPoint userButtonPoint = CGPointMake(50.0f, 6.0f);
         CGFloat constrainWidth = self.nameHeaderView.bounds.size.width - (avatarImageView.bounds.origin.x + avatarImageView.bounds.size.width);
         CGSize constrainSize = CGSizeMake(constrainWidth, self.nameHeaderView.bounds.size.height - userButtonPoint.y*2.0f);
-        CGSize userButtonSize = [userButton.titleLabel.text sizeWithFont:userButton.titleLabel.font constrainedToSize:constrainSize lineBreakMode:UILineBreakModeTailTruncation];
+        CGSize userButtonSize = [userButton.titleLabel.text sizeWithFont:userButton.titleLabel.font constrainedToSize:constrainSize lineBreakMode:NSLineBreakByTruncatingTail];
         CGRect userButtonFrame = CGRectMake(userButtonPoint.x, userButtonPoint.y, userButtonSize.width, userButtonSize.height);
         [userButton setFrame:userButtonFrame];
         
         // Create time label
         NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.photo createdAt]];
-        CGSize timeLabelSize = [timeString sizeWithFont:[UIFont systemFontOfSize:11] constrainedToSize:CGSizeMake(nameLabelMaxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeTailTruncation];
+        CGSize timeLabelSize = [timeString sizeWithFont:[UIFont systemFontOfSize:11] constrainedToSize:CGSizeMake(nameLabelMaxWidth, CGFLOAT_MAX) lineBreakMode:NSLineBreakByTruncatingTail];
         UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeLabelX, nameLabelY+userButtonSize.height, timeLabelSize.width, timeLabelSize.height)];
         [timeLabel setText:timeString];
         [timeLabel setFont:[UIFont systemFontOfSize:11.0f]];
         [timeLabel setTextColor:[UIColor colorWithRed:124.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0f]];
-        [timeLabel setShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f]];
-        [timeLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+       // [timeLabel setShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f]];
+        //[timeLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
         [timeLabel setBackgroundColor:[UIColor clearColor]];
         [self.nameHeaderView addSubview:timeLabel];
         
@@ -299,7 +301,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
      Create bottom section fo the header view; the likes
      */
     likeBarView = [[UIView alloc] initWithFrame:CGRectMake(likeBarX, likeBarY, likeBarWidth, likeBarHeight)];
-    [likeBarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
+    //[likeBarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
     [self addSubview:likeBarView];
     
     // Create the heart-shaped like button
@@ -308,25 +310,26 @@ static TTTTimeIntervalFormatter *timeFormatter;
     [likeButton setBackgroundColor:[UIColor clearColor]];
     [likeButton setTitleColor:[UIColor colorWithRed:0.369f green:0.271f blue:0.176f alpha:1.0f] forState:UIControlStateNormal];
     [likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [likeButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
-    [likeButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.750f] forState:UIControlStateSelected];
+    //[likeButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
+    //[likeButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.750f] forState:UIControlStateSelected];
     [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
     [[likeButton titleLabel] setFont:[UIFont systemFontOfSize:12.0f]];
-    [[likeButton titleLabel] setMinimumFontSize:11.0f];
+    //deprecated [[likeButton titleLabel] setMinimumFontSize:11.0f];
+    [[likeButton titleLabel] setMinimumScaleFactor:11.0f];
     [[likeButton titleLabel] setAdjustsFontSizeToFitWidth:YES];
-    [[likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+    //[[likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
     [likeButton setAdjustsImageWhenDisabled:NO];
     [likeButton setAdjustsImageWhenHighlighted:NO];
-    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLike.png"] forState:UIControlStateNormal];
-    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLikeSelected.png"] forState:UIControlStateSelected];
+    //[likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLike.png"] forState:UIControlStateNormal];
+    //[likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLikeSelected.png"] forState:UIControlStateSelected];
     [likeButton addTarget:self action:@selector(didTapLikePhotoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [likeBarView addSubview:likeButton];
     
     [self reloadLikeBar];
     
-    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"SeparatorComments.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 1.0f, 0.0f, 1.0f)]];
-    [separator setFrame:CGRectMake(0.0f, likeBarView.frame.size.height - 2.0f, likeBarView.frame.size.width, 2.0f)];
-    [likeBarView addSubview:separator];    
+   // UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"SeparatorComments.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 1.0f, 0.0f, 1.0f)]];
+   // [separator setFrame:CGRectMake(0.0f, likeBarView.frame.size.height - 2.0f, likeBarView.frame.size.width, 2.0f)];
+   // [likeBarView addSubview:separator];
 }
 
 - (void)didTapLikePhotoButtonAction:(UIButton *)button {

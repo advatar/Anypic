@@ -54,7 +54,7 @@
         }
 
         // The number of objects to show per page
-        self.objectsPerPage = 10;
+        self.objectsPerPage = 30;
         
         // Improve scrolling performance by reusing UITableView section headers
         self.reusableSectionHeaderViews = [NSMutableSet setWithCapacity:3];
@@ -68,13 +68,16 @@
 #pragma mark - UIViewController
 
 - (void)viewDidLoad {
+    
+    
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone]; // PFQueryTableViewController reads this in viewDidLoad -- would prefer to throw this in init, but didn't work
     
     [super viewDidLoad];
     
-    UIView *texturedBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    texturedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundLeather.png"]];
-    self.tableView.backgroundView = texturedBackgroundView;
+    //UIView *texturedBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    //texturedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundLeather.png"]];
+    //self.tableView.backgroundView = texturedBackgroundView;
+    
 
     if (NSClassFromString(@"UIRefreshControl")) {
         // Use the new iOS 6 refresh control.
@@ -237,7 +240,8 @@
         return 44.0f;
     }
     
-    return 280.0f;
+    return 408.0f;
+//    return 280.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -349,7 +353,7 @@
         }
 
         cell.photoButton.tag = indexPath.section;
-        cell.imageView.image = [UIImage imageNamed:@"PlaceholderPhoto.png"];
+       // cell.imageView.image = [UIImage imageNamed:@"PlaceholderPhoto.png"];
         
         if (object) {
             cell.imageView.file = [object objectForKey:kPAPPhotoPictureKey];
@@ -371,7 +375,7 @@
     if (!cell) {
         cell = [[PAPLoadMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadMoreCellIdentifier];
         cell.selectionStyle =UITableViewCellSelectionStyleGray;
-        cell.separatorImageTop.image = [UIImage imageNamed:@"SeparatorTimelineDark.png"];
+       // cell.separatorImageTop.image = [UIImage imageNamed:@"SeparatorTimelineDark.png"];
         cell.hideSeparatorBottom = YES;
         cell.mainView.backgroundColor = [UIColor clearColor];
     }

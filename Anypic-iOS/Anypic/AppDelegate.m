@@ -65,6 +65,11 @@
     // ****************************************************************************
     // Parse initialization
     // [Parse setApplicationId:@"APPLICATION_ID" clientKey:@"CLIENT_KEY"];
+    
+    [Parse setApplicationId:@"DuAxnlLL7QxtDVq1MQmQV6hQs79iS1QGHhQEUIK3"
+                  clientKey:@"Y5EWZ5FqXjvkaqRIATURzzPwSR1o85lDQmX1FNYg"];
+
+    
     [PFFacebookUtils initializeFacebook];
     // ****************************************************************************
     
@@ -94,6 +99,9 @@
 
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
+    
+    
+    [self.navController setNavigationBarHidden:YES animated:YES];
 
     [self handlePush:launchOptions];
 
@@ -222,7 +230,8 @@
     loginViewController.fields = PFLogInFieldsFacebook;
     loginViewController.facebookPermissions = @[ @"user_about_me" ];
     
-    [self.welcomeViewController presentModalViewController:loginViewController animated:NO];
+    // deprecated [self.welcomeViewController presentModalViewController:loginViewController animated:NO];
+    [self.welcomeViewController presentViewController:loginViewController animated:YES completion:nil];
 }
 
 - (void)presentLoginViewController {
@@ -239,11 +248,13 @@
     UINavigationController *emptyNavigationController = [[UINavigationController alloc] init];
     UINavigationController *activityFeedNavigationController = [[UINavigationController alloc] initWithRootViewController:self.activityViewController];
     
-    [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:homeNavigationController];
+    /*[PAPUtility addBottomDropShadowToNavigationBarForNavigationController:homeNavigationController];
     [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:emptyNavigationController];
     [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:activityFeedNavigationController];
+    */
     
     UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:0];
+    
     [homeTabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"IconHomeSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"IconHome.png"]];
     [homeTabBarItem setTitleTextAttributes: @{ UITextAttributeTextColor: [UIColor colorWithRed:86.0f/255.0f green:55.0f/255.0f blue:42.0f/255.0f alpha:1.0f] } forState:UIControlStateNormal];
     [homeTabBarItem setTitleTextAttributes: @{ UITextAttributeTextColor: [UIColor colorWithRed:129.0f/255.0f green:99.0f/255.0f blue:69.0f/255.0f alpha:1.0f] } forState:UIControlStateSelected];
@@ -307,29 +318,33 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.498f green:0.388f blue:0.329f alpha:1.0f]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                UITextAttributeTextColor: [UIColor whiteColor],
-                          UITextAttributeTextShadowColor: [UIColor colorWithWhite:0.0f alpha:0.750f],
-                         UITextAttributeTextShadowOffset: [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]
+                                UITextAttributeTextColor: [UIColor blackColor]
      }];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"BackgroundNavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    
+    /*
+     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"BackgroundNavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     
     [[UIButton appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage imageNamed:@"ButtonNavigationBar.png"] forState:UIControlStateNormal];
-    [[UIButton appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage imageNamed:@"ButtonNavigationBarSelected.png"] forState:UIControlStateHighlighted];
-    [[UIButton appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleColor:[UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"]
+    [[UIButton appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:[UIImage imageNamed:@"ButtonNavigationBarSelected.png"] forState:UIControlStateHighlighted];
+    
+    [[UIButton appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleColor:[UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    */
+    
+    /*[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"]
                                                       forState:UIControlStateNormal
                                                     barMetrics:UIBarMetricsDefault];
     
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"]
                                                       forState:UIControlStateSelected
                                                     barMetrics:UIBarMetricsDefault];
+     
+     */
 
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{
-                                UITextAttributeTextColor: [UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0f],
-                          UITextAttributeTextShadowColor: [UIColor colorWithWhite:0.0f alpha:0.750f],
-                         UITextAttributeTextShadowOffset: [NSValue valueWithCGSize:CGSizeMake(0.0f, 1.0f)]
-     } forState:UIControlStateNormal];
+                                UITextAttributeTextColor: [UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0f]
+            } forState:UIControlStateNormal];
     
     [[UISearchBar appearance] setTintColor:[UIColor colorWithRed:32.0f/255.0f green:19.0f/255.0f blue:16.0f/255.0f alpha:1.0f]];
 }
@@ -395,9 +410,10 @@
         [MBProgressHUD hideHUDForView:self.navController.presentedViewController.view animated:YES];
         [self presentTabBarController];
 
-        [self.navController dismissModalViewControllerAnimated:YES];
-        return YES;
+        // deprecated [self.navController dismissViewControllerAnimated:YES completion:nil];
+        [self.navController dismissViewControllerAnimated:NO completion:nil];        return YES;
     }
+  
     
     return NO;
 }

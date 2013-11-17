@@ -30,7 +30,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>${BUNDLE_IDENTIFIER}com.parse.Anypic</string>
+	<string>com.advatarsystems.slingcard.catch</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -48,16 +48,18 @@
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
 			<string>Icon@2x</string>
+			<key>CFBundleURLName</key>
+			<string>com.advatarsystems.slingcard.catch.fb_id</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbFACEBOOK_APP_ID</string>
+				<string>fb524017274360609</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.4</string>
 	<key>FacebookAppID</key>
-	<string>FACEBOOK_APP_ID</string>
+	<string>524017274360609</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.photography</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -67,7 +69,9 @@
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIBackgroundModes</key>
-	<array/>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIInterfaceOrientation</key>
 	<string>UIInterfaceOrientationPortrait</string>
 	<key>UILaunchImageFile</key>
@@ -75,7 +79,9 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
-	<array/>
+	<array>
+		<string>gamekit</string>
+	</array>
 	<key>UIRequiresPersistentWiFi</key>
 	<false/>
 	<key>UIStatusBarHidden</key>

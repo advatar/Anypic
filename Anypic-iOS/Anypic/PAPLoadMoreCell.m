@@ -27,8 +27,8 @@
     if (self) {
         // Initialization code
         self.cellInsetWidth = 0.0f;
-        hideSeparatorTop = NO;
-        hideSeparatorBottom = NO;
+        hideSeparatorTop = YES;
+        hideSeparatorBottom = YES;
 
         self.opaque = YES;
         self.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -36,8 +36,9 @@
         self.backgroundColor = [UIColor clearColor];
         
         mainView = [[UIView alloc] initWithFrame:self.contentView.frame];
-        [mainView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
+        //[mainView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
         
+        /*
         self.loadMoreImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellLoadMore.png"]];
         [mainView addSubview:self.loadMoreImageView];
         
@@ -46,7 +47,8 @@
         
         self.separatorImageBottom = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"SeparatorComments.png"] resizableImageWithCapInsets:UIEdgeInsetsMake( 0.0f, 1.0f, 0.0f, 1.0f)]];
         [mainView addSubview:separatorImageBottom];
-
+        */
+        
         [self.contentView addSubview:mainView];
     }
     
@@ -63,18 +65,19 @@
     [self.loadMoreImageView setFrame:CGRectMake( -self.cellInsetWidth, -2.0f, 320.0f, 31.0f)];
 
     // Layout separator
-    [self.separatorImageBottom setFrame:CGRectMake( 0.0f, self.frame.size.height - 2.0f, self.frame.size.width-self.cellInsetWidth * 2.0f, 2.0f)];
-    [self.separatorImageBottom setHidden:hideSeparatorBottom];
+    //[self.separatorImageBottom setFrame:CGRectMake( 0.0f, self.frame.size.height - 2.0f, self.frame.size.width-self.cellInsetWidth * 2.0f, 2.0f)];
+    //[self.separatorImageBottom setHidden:hideSeparatorBottom];
     
-    [self.separatorImageTop setFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width - self.cellInsetWidth * 2.0f, 2.0f)];
-    [self.separatorImageTop setHidden:hideSeparatorTop];
+    //[self.separatorImageTop setFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width - self.cellInsetWidth * 2.0f, 2.0f)];
+    //[self.separatorImageTop setHidden:hideSeparatorTop];
 }
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
+    /*
     if (self.cellInsetWidth != 0.0f) {
         [PAPUtility drawSideDropShadowForRect:mainView.frame inContext:UIGraphicsGetCurrentContext()];
-    }
+    }*/
 }
 
 

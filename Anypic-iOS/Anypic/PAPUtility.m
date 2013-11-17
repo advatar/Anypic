@@ -317,6 +317,7 @@
     return query;
 }
 
+/*
 
 #pragma mark Shadow Rendering
 
@@ -400,5 +401,6 @@
     navigationController.navigationBar.clipsToBounds = NO;
     [navigationController.navigationBar addSubview:gradientView];	    
 }
+*/
 
 @end

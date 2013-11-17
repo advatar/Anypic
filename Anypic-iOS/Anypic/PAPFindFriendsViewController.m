@@ -64,7 +64,7 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
         // Used to determine Follow/Unfollow All button status
         self.followStatus = PAPFindFriendsFollowingSome;
         
-        [self.tableView setSeparatorColor:[UIColor colorWithRed:210.0f/255.0f green:203.0f/255.0f blue:182.0f/255.0f alpha:1.0]];
+       // [self.tableView setSeparatorColor:[UIColor colorWithRed:210.0f/255.0f green:203.0f/255.0f blue:182.0f/255.0f alpha:1.0]];
     }
     return self;
 }
@@ -75,11 +75,12 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /*
     UIView *texturedBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     [texturedBackgroundView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundLeather.png"]]];
     self.tableView.backgroundView = texturedBackgroundView;
-        
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TitleFindFriends.png"]];
+     */
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(0, 0, 52.0f, 32.0f)];
@@ -88,29 +89,32 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
     [[backButton titleLabel] setFont:[UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]];
     [backButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5.0f, 0, 0)];
     [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"] forState:UIControlStateNormal];
     [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"] forState:UIControlStateHighlighted];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     if ([MFMailComposeViewController canSendMail] || [MFMessageComposeViewController canSendText]) {
         self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
-        [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundFindFriendsCell.png"]]];
+        //[self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundFindFriendsCell.png"]]];
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [clearButton setBackgroundColor:[UIColor clearColor]];
         [clearButton addTarget:self action:@selector(inviteFriendsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [clearButton setFrame:self.headerView.frame];
         [self.headerView addSubview:clearButton];
         NSString *inviteString = @"Invite friends";
-        CGSize inviteStringSize = [inviteString sizeWithFont:[UIFont boldSystemFontOfSize:18] constrainedToSize:CGSizeMake(310, CGFLOAT_MAX) lineBreakMode:UILineBreakModeTailTruncation];
+        CGSize inviteStringSize = [inviteString sizeWithFont:[UIFont boldSystemFontOfSize:18] constrainedToSize:CGSizeMake(310, CGFLOAT_MAX) lineBreakMode:NSLineBreakByTruncatingTail];
         UILabel *inviteLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, (self.headerView.frame.size.height-inviteStringSize.height)/2, inviteStringSize.width, inviteStringSize.height)];
         [inviteLabel setText:inviteString];
         [inviteLabel setFont:[UIFont boldSystemFontOfSize:18]];
         [inviteLabel setTextColor:[UIColor colorWithRed:87.0f/255.0f green:72.0f/255.0f blue:49.0f/255.0f alpha:1.0]];
         [inviteLabel setBackgroundColor:[UIColor clearColor]];
         [self.headerView addSubview:inviteLabel];
-        UIImageView *separatorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SeparatorTimeline.png"]];
+        /*UIImageView *separatorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SeparatorTimeline.png"]];
         [separatorImage setFrame:CGRectMake(0, self.headerView.frame.size.height-2, 320, 2)];
-        [self.headerView addSubview:separatorImage];
+        [self.headerView addSubview:separatorImage];*/
         [self.tableView setTableHeaderView:self.headerView];
     }
     
@@ -331,7 +335,7 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
 
 /* Called when the user cancels the address book view controller. We simply dismiss it. */
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /* Called when a member of the address book is selected, we return YES to display the member's details. */
@@ -377,7 +381,7 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
 
 /* Simply dismiss the MFMailComposeViewController when the user sends an email or cancels */
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissModalViewControllerAnimated:YES];  
+    [self dismissViewControllerAnimated:YES completion:nil];  
 }
 
 
@@ -385,7 +389,7 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
 
 /* Simply dismiss the MFMessageComposeViewController when the user sends a text or cancels */
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -421,7 +425,7 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
         addressBook.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
     }
 
-    [self presentModalViewController:addressBook animated:YES];
+    [self presentViewController:addressBook animated:YES completion:nil];
 }
 
 - (void)followAllFriendsButtonAction:(id)sender {
@@ -525,8 +529,9 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
     // Dismiss the current modal view controller and display the compose email one.
     // Note that we do not animate them. Doing so would require us to present the compose
     // mail one only *after* the address book is dismissed.
-    [self dismissModalViewControllerAnimated:NO];
-    [self presentModalViewController:composeEmailViewController animated:NO];
+    //[self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self presentViewController:composeEmailViewController animated:NO completion:nil];
 }
 
 - (void)presentMessageComposeViewController:(NSString *)recipient {
@@ -540,8 +545,8 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
     
     // Dismiss the current modal view controller and display the compose text one.
     // See previous use for reason why these are not animated.
-    [self dismissModalViewControllerAnimated:NO];
-    [self presentModalViewController:composeTextViewController animated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self presentViewController:composeTextViewController animated:NO  completion:nil];
 }
 
 - (void)followUsersTimerFired:(NSTimer *)timer {

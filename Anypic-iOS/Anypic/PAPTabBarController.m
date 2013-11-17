@@ -20,11 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[self tabBar] setBackgroundImage:[UIImage imageNamed:@"BackgroundTabBar.png"]];
-    [[self tabBar] setSelectionIndicatorImage:[UIImage imageNamed:@"BackgroundTabBarItemSelected.png"]];
+   // [[self tabBar] setBackgroundImage:[UIImage imageNamed:@"BackgroundTabBar.png"]];
+   // [[self tabBar] setSelectionIndicatorImage:[UIImage imageNamed:@"BackgroundTabBarItemSelected.png"]];
     
     self.navController = [[UINavigationController alloc] init];
-    [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:self.navController];
+   // [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:self.navController];
 }
 
 
@@ -50,11 +50,12 @@
 #pragma mark - UIImagePickerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissModalViewControllerAnimated:YES];
+   [self dismissViewControllerAnimated:YES  completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [self dismissModalViewControllerAnimated:NO];
+   // [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO  completion:nil];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
      
@@ -64,7 +65,8 @@
     [self.navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self.navController pushViewController:viewController animated:NO];
     
-    [self presentModalViewController:self.navController animated:YES];
+//    [self presentModalViewController:self.navController animated:YES];
+    [self presentViewController:self.navController animated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -134,7 +136,8 @@
     cameraUI.showsCameraControls = YES;
     cameraUI.delegate = self;
     
-    [self presentModalViewController:cameraUI animated:YES];
+   //deprecated [self presentModalViewController:cameraUI animated:YES];
+    [self presentViewController:cameraUI animated:YES completion:nil];
     
     return YES;
 }
@@ -166,8 +169,9 @@
     cameraUI.allowsEditing = YES;
     cameraUI.delegate = self;
     
-    [self presentModalViewController:cameraUI animated:YES];
-    
+    //[self presentModalViewController:cameraUI animated:YES];
+    [self presentViewController:cameraUI animated:YES completion:nil];
+   
     return YES;
 }
 

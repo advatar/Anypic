@@ -80,20 +80,13 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     backButton.frame = CGRectMake( 0.0f, 0.0f, 52.0f, 32.0f);
-    backButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
-    backButton.titleEdgeInsets = UIEdgeInsetsMake( 0.0f, 5.0f, 0.0f, 0.0f);
+    backButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+    //backButton.titleEdgeInsets = UIEdgeInsetsMake( 0.0f, 5.0f, 0.0f, 0.0f);
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"] forState:UIControlStateNormal];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"] forState:UIControlStateHighlighted];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
-    // Set table view properties
-    //UIView *texturedBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    //texturedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundLeather.png"]];
-    //self.tableView.backgroundView = texturedBackgroundView;
-    
+        
     // Set table header
     self.headerView = [[PAPPhotoDetailsHeaderView alloc] initWithFrame:[PAPPhotoDetailsHeaderView rectForView] photo:self.photo];
     self.headerView.delegate = self;

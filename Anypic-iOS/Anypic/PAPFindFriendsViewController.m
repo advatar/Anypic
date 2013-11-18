@@ -84,21 +84,22 @@ static NSUInteger const kPAPCellPhotoNumLabelTag = 5;
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(0, 0, 52.0f, 32.0f)];
+    
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    [[backButton titleLabel] setFont:[UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]];
+    [[backButton titleLabel] setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize ]]];
     [backButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5.0f, 0, 0)];
     [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"] forState:UIControlStateNormal];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"] forState:UIControlStateHighlighted];
+   // [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"] forState:UIControlStateNormal];
+   // [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"] forState:UIControlStateHighlighted];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     if ([MFMailComposeViewController canSendMail] || [MFMessageComposeViewController canSendText]) {
         self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
-        //[self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundFindFriendsCell.png"]]];
+        [self.headerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundFindFriendsCell.png"]]];
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [clearButton setBackgroundColor:[UIColor clearColor]];
         [clearButton addTarget:self action:@selector(inviteFriendsButtonAction:) forControlEvents:UIControlEventTouchUpInside];

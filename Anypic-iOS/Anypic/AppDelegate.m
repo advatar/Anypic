@@ -253,16 +253,17 @@
     [PAPUtility addBottomDropShadowToNavigationBarForNavigationController:activityFeedNavigationController];
     */
     
-    UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:0];
+    UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home"  image:nil tag:0];
     
-    [homeTabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"IconHomeSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"IconHome.png"]];
+    //[homeTabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"IconHomeSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"IconHome.png"]];
     [homeTabBarItem setTitleTextAttributes: @{ UITextAttributeTextColor: [UIColor colorWithRed:86.0f/255.0f green:55.0f/255.0f blue:42.0f/255.0f alpha:1.0f] } forState:UIControlStateNormal];
     [homeTabBarItem setTitleTextAttributes: @{ UITextAttributeTextColor: [UIColor colorWithRed:129.0f/255.0f green:99.0f/255.0f blue:69.0f/255.0f alpha:1.0f] } forState:UIControlStateSelected];
     
     UITabBarItem *activityFeedTabBarItem = [[UITabBarItem alloc] initWithTitle:@"Activity" image:nil tag:0];
-    [activityFeedTabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"IconTimelineSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"IconTimeline.png"]];
-    [activityFeedTabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor: [UIColor colorWithRed:86.0f/255.0f green:55.0f/255.0f blue:42.0f/255.0f alpha:1.0f] } forState:UIControlStateNormal];
-    [activityFeedTabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor: [UIColor colorWithRed:129.0f/255.0f green:99.0f/255.0f blue:69.0f/255.0f alpha:1.0f] } forState:UIControlStateSelected];
+    
+    //[activityFeedTabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"IconTimelineSelected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"IconTimeline.png"]];
+    [activityFeedTabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor: [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:1.0f] } forState:UIControlStateNormal];
+    [activityFeedTabBarItem setTitleTextAttributes:@{ UITextAttributeTextColor: [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:1.0f] } forState:UIControlStateSelected];
     
     [homeNavigationController setTabBarItem:homeTabBarItem];
     [activityFeedNavigationController setTabBarItem:activityFeedTabBarItem];

@@ -35,12 +35,10 @@
     [backButton setFrame:CGRectMake( 0.0f, 0.0f, 52.0f, 32.0f)];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor colorWithRed:214.0f/255.0f green:210.0f/255.0f blue:197.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    [[backButton titleLabel] setFont:[UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]]];
+    [[backButton titleLabel] setFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]]];
     [backButton setTitleEdgeInsets:UIEdgeInsetsMake( 0.0f, 5.0f, 0.0f, 0.0f)];
     [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBack.png"] forState:UIControlStateNormal];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"ButtonBackSelected.png"] forState:UIControlStateHighlighted];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     
@@ -96,7 +94,7 @@
     
     UILabel *photoCountLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0.0f, 94.0f, 92.0f, 22.0f)];
     [photoCountLabel setTextAlignment:NSTextAlignmentCenter];
-    [photoCountLabel setBackgroundColor:[UIColor blackColor]];
+    [photoCountLabel setBackgroundColor:[UIColor clearColor]];
     [photoCountLabel setTextColor:[UIColor blackColor]];
     [photoCountLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
     [self.headerView addSubview:photoCountLabel];

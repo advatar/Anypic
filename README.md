@@ -1,5 +1,7 @@
 # Anypic
 
+[![Join the chat at https://gitter.im/advatar/Anypic](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/advatar/Anypic?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Anypic is the easiest way to share photos with your friends. Get the app and share your fun photos with the world. [Anypic](https://anypic.org) is fully powered by [Parse](https://parse.com). 
 
 You can get the [source code](https://github.com/ParsePlatform/Anypic) and create your own Anypic with this [tutorial](https://parse.com/tutorials/anypic).
